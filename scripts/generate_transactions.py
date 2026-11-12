@@ -7,6 +7,8 @@ players = pd.read_csv("data/raw/players.csv", parse_dates=["registration_date"])
 
 # 1. Скільки депозитів зробить кожен гравець
 n_deposits = rng.poisson(lam=4, size=len(players))
+no_deposit = rng.random(len(players)) < 0.6
+n_deposits[no_deposit] = 0
 
 # 2. Один рядок = один депозит
 deposits = pd.DataFrame({
